@@ -41,7 +41,7 @@ INCS_Debug := \
 	-I/Users/pairing/.node-gyp/0.8.20/src \
 	-I/Users/pairing/.node-gyp/0.8.20/deps/uv/include \
 	-I/Users/pairing/.node-gyp/0.8.20/deps/v8/include \
-	-I/Users/pairing/development/zookeeper-darwin/node_modules/zookeeper/build/zk/include/zookeeper
+	-I/Users/pairing/development/node-zookeeper-binary/node_modules/zookeeper/build/zk/include/zookeeper
 
 DEFS_Release := \
 	'-D_DARWIN_USE_64_BIT_INODE=1' \
@@ -80,7 +80,7 @@ INCS_Release := \
 	-I/Users/pairing/.node-gyp/0.8.20/src \
 	-I/Users/pairing/.node-gyp/0.8.20/deps/uv/include \
 	-I/Users/pairing/.node-gyp/0.8.20/deps/v8/include \
-	-I/Users/pairing/development/zookeeper-darwin/node_modules/zookeeper/build/zk/include/zookeeper
+	-I/Users/pairing/development/node-zookeeper-binary/node_modules/zookeeper/build/zk/include/zookeeper
 
 OBJS := \
 	$(obj).target/$(TARGET)/src/node-zk.o
@@ -136,7 +136,7 @@ LIBTOOLFLAGS_Release := \
 
 LIBS := \
 	-undefined dynamic_lookup \
-	/Users/pairing/development/zookeeper-darwin/node_modules/zookeeper/build/zk/lib/libzookeeper_st.a
+	/Users/pairing/development/node-zookeeper-binary/node_modules/zookeeper/build/zk/lib/libzookeeper_st.a
 
 $(builddir)/zookeeper.node: GYP_LDFLAGS := $(LDFLAGS_$(BUILDTYPE))
 $(builddir)/zookeeper.node: LIBS := $(LIBS)

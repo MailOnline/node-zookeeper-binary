@@ -344,7 +344,7 @@ ifeq ($(strip $(foreach prefix,$(NO_LOAD),\
 endif
 
 quiet_cmd_regen_makefile = ACTION Regenerating $@
-cmd_regen_makefile = /usr/local/lib/node_modules/npm/node_modules/node-gyp/gyp/gyp -fmake --ignore-environment "--toplevel-dir=." -I/Users/pairing/development/zookeeper-darwin/node_modules/zookeeper/build/config.gypi -I/usr/local/lib/node_modules/npm/node_modules/node-gyp/addon.gypi -I/Users/pairing/.node-gyp/0.8.20/common.gypi "--depth=." "-Goutput_dir=." "--generator-output=build" "-Dlibrary=shared_library" "-Dvisibility=default" "-Dnode_root_dir=/Users/pairing/.node-gyp/0.8.20" "-Dmodule_root_dir=/Users/pairing/development/zookeeper-darwin/node_modules/zookeeper" binding.gyp
+cmd_regen_makefile = /usr/local/lib/node_modules/npm/node_modules/node-gyp/gyp/gyp -fmake --ignore-environment "--toplevel-dir=." -I/Users/pairing/development/node-zookeeper-binary/node_modules/zookeeper/build/config.gypi -I/usr/local/lib/node_modules/npm/node_modules/node-gyp/addon.gypi -I/Users/pairing/.node-gyp/0.8.20/common.gypi "--depth=." "-Goutput_dir=." "--generator-output=build" "-Dlibrary=shared_library" "-Dvisibility=default" "-Dnode_root_dir=/Users/pairing/.node-gyp/0.8.20" "-Dmodule_root_dir=/Users/pairing/development/node-zookeeper-binary/node_modules/zookeeper" binding.gyp
 Makefile: $(srcdir)/../../../../.node-gyp/0.8.20/common.gypi $(srcdir)/build/config.gypi $(srcdir)/binding.gyp $(srcdir)/../../../../../../usr/local/lib/node_modules/npm/node_modules/node-gyp/addon.gypi
 	$(call do_cmd,regen_makefile)
 
