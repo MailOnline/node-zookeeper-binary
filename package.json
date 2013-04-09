@@ -1,6 +1,6 @@
 {
-  "name": "zookeeper-darwin",
-  "description": "apache zookeeper client (zookeeper async API >= 3.4.0)",
+  "name": "zookeeper-binary",
+  "description": "apache zookeeper client with compiled binaries for common platforms",
   "version": "3.4.6",
   "dependencies": {
     "async": "~0.1.18",
