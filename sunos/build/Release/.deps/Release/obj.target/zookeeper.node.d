@@ -1,0 +1,1 @@
+cmd_Release/obj.target/zookeeper.node := ./gyp-sun-tool flock ./Release/linker.lock g++ -shared -rdynamic -m64 -pthreads -lzookeeper_st -Wl,-z,allextract -L/opt/local/lib -Wl,-soname=zookeeper.node -o Release/obj.target/zookeeper.node -Wl,--start-group Release/obj.target/zookeeper/src/node-zk.o -Wl,--end-group 
