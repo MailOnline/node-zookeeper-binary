@@ -1,0 +1,1 @@
+cmd_Release/obj.target/zookeeper.node := flock ./Release/linker.lock g++ -shared -pthread -rdynamic -m32  -Wl,-soname=zookeeper.node -o Release/obj.target/zookeeper.node -Wl,--start-group Release/obj.target/zookeeper/src/node-zk.o -Wl,--end-group /home/pairing/development/node-zookeeper-binary/node_modules/zookeeper/build/zk/lib/libzookeeper_st.a

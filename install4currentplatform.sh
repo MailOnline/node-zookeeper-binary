@@ -1,7 +1,9 @@
 
 set -e
 
-platform=$(node -e 'console.log(require("os").platform())')
+platform=$(node -e 'var os=require("os");console.log(os.platform()+"-"+os.arch())')
+
+echo "platform=$platform"
 
 rm -rf node_modules/zookeeper
 npm install zookeeper
