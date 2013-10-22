@@ -12,7 +12,7 @@ DEFS_Debug := \
 
 # Flags passed to all source files.
 CFLAGS_Debug := \
-	-Os \
+	-O0 \
 	-gdwarf-2 \
 	-mmacosx-version-min=10.5 \
 	-arch x86_64 \
@@ -38,10 +38,10 @@ CFLAGS_OBJC_Debug :=
 CFLAGS_OBJCC_Debug :=
 
 INCS_Debug := \
-	-I/Users/pairing/.node-gyp/0.8.20/src \
-	-I/Users/pairing/.node-gyp/0.8.20/deps/uv/include \
-	-I/Users/pairing/.node-gyp/0.8.20/deps/v8/include \
-	-I/Users/pairing/development/node-zookeeper-binary/node_modules/zookeeper/build/zk/include/zookeeper
+	-I/Users/carlosfernandezgarcia/.node-gyp/0.10.16/src \
+	-I/Users/carlosfernandezgarcia/.node-gyp/0.10.16/deps/uv/include \
+	-I/Users/carlosfernandezgarcia/.node-gyp/0.10.16/deps/v8/include \
+	-I/Users/carlosfernandezgarcia/development/node-zookeeper-binary/node_modules/zookeeper/build/zk/include/zookeeper
 
 DEFS_Release := \
 	'-D_DARWIN_USE_64_BIT_INODE=1' \
@@ -77,10 +77,10 @@ CFLAGS_OBJC_Release :=
 CFLAGS_OBJCC_Release :=
 
 INCS_Release := \
-	-I/Users/pairing/.node-gyp/0.8.20/src \
-	-I/Users/pairing/.node-gyp/0.8.20/deps/uv/include \
-	-I/Users/pairing/.node-gyp/0.8.20/deps/v8/include \
-	-I/Users/pairing/development/node-zookeeper-binary/node_modules/zookeeper/build/zk/include/zookeeper
+	-I/Users/carlosfernandezgarcia/.node-gyp/0.10.16/src \
+	-I/Users/carlosfernandezgarcia/.node-gyp/0.10.16/deps/uv/include \
+	-I/Users/carlosfernandezgarcia/.node-gyp/0.10.16/deps/v8/include \
+	-I/Users/carlosfernandezgarcia/development/node-zookeeper-binary/node_modules/zookeeper/build/zk/include/zookeeper
 
 OBJS := \
 	$(obj).target/$(TARGET)/src/node-zk.o
@@ -136,7 +136,7 @@ LIBTOOLFLAGS_Release := \
 
 LIBS := \
 	-undefined dynamic_lookup \
-	/Users/pairing/development/node-zookeeper-binary/node_modules/zookeeper/build/zk/lib/libzookeeper_st.a
+	/Users/carlosfernandezgarcia/development/node-zookeeper-binary/node_modules/zookeeper/build/zk/lib/libzookeeper_st.a
 
 $(builddir)/zookeeper.node: GYP_LDFLAGS := $(LDFLAGS_$(BUILDTYPE))
 $(builddir)/zookeeper.node: LIBS := $(LIBS)
