@@ -3,4 +3,4 @@
 export builddir_name ?= build/./.
 .PHONY: all
 all:
-	$(MAKE) libzk zookeeper
+	$(MAKE) libzk zookeeper after_build

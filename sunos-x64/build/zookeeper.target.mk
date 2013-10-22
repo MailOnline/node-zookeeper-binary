@@ -14,10 +14,11 @@ DEFS_Debug := \
 CFLAGS_Debug := \
 	-fPIC \
 	-Wall \
+	-Wextra \
+	-Wno-unused-parameter \
 	-m64 \
 	-pthreads \
 	-Wall \
-	-Werror \
 	-O0 \
 	-Wno-strict-aliasing \
 	-g \
@@ -32,9 +33,9 @@ CFLAGS_CC_Debug := \
 	-fno-exceptions
 
 INCS_Debug := \
-	-I/root/.node-gyp/0.8.18/src \
-	-I/root/.node-gyp/0.8.18/deps/uv/include \
-	-I/root/.node-gyp/0.8.18/deps/v8/include \
+	-I/root/.node-gyp/0.10.16/src \
+	-I/root/.node-gyp/0.10.16/deps/uv/include \
+	-I/root/.node-gyp/0.10.16/deps/v8/include \
 	-I/opt/local/include/zookeeper
 
 DEFS_Release := \
@@ -47,10 +48,11 @@ DEFS_Release := \
 CFLAGS_Release := \
 	-fPIC \
 	-Wall \
+	-Wextra \
+	-Wno-unused-parameter \
 	-m64 \
 	-pthreads \
 	-Wall \
-	-Werror \
 	-O0 \
 	-Wno-strict-aliasing \
 	-O2 \
@@ -69,9 +71,9 @@ CFLAGS_CC_Release := \
 	-fno-exceptions
 
 INCS_Release := \
-	-I/root/.node-gyp/0.8.18/src \
-	-I/root/.node-gyp/0.8.18/deps/uv/include \
-	-I/root/.node-gyp/0.8.18/deps/v8/include \
+	-I/root/.node-gyp/0.10.16/src \
+	-I/root/.node-gyp/0.10.16/deps/uv/include \
+	-I/root/.node-gyp/0.10.16/deps/v8/include \
 	-I/opt/local/include/zookeeper
 
 OBJS := \

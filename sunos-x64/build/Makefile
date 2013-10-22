@@ -49,7 +49,7 @@ all_deps :=
 #   export LINK=g++
 #
 # This will allow make to invoke N linker processes as specified in -jN.
-LINK ?= ./gyp-sun-tool flock $(builddir)/linker.lock $(CXX)
+LINK ?= ./gyp-sun-tool flock $(builddir)/linker.lock $(CXX.target)
 
 CC.target ?= $(CC)
 CFLAGS.target ?= $(CFLAGS)
@@ -145,7 +145,7 @@ cmd_touch = touch $@
 
 quiet_cmd_copy = COPY $@
 # send stderr to /dev/null to ignore messages when linking directories.
-cmd_copy = ln -f "$<" "$@" 2>/dev/null || (rm -rf "$@" && cp -af "$<" "$@")
+cmd_copy = rm -rf "$@" && cp -af "$<" "$@"
 
 quiet_cmd_alink = AR($(TOOLSET)) $@
 cmd_alink = rm -f $@ && $(AR.$(TOOLSET)) crs $@ $(filter %.o,$^)
@@ -218,15 +218,14 @@ command_changed = $(or $(subst $(cmd_$(1)),,$(cmd_$(call replace_spaces,$@))),\
 #   $| -- order-only dependencies
 prereq_changed = $(filter-out FORCE_DO_CMD,$(filter-out $|,$?))
 
-# Helper that executes all postbuilds, and deletes the output file when done
-# if any of the postbuilds failed.
+# Helper that executes all postbuilds until one fails.
 define do_postbuilds
   @E=0;\
   for p in $(POSTBUILDS); do\
     eval $$p;\
-    F=$$?;\
-    if [ $$F -ne 0 ]; then\
-      E=$$F;\
+    E=$$?;\
+    if [ $$E -ne 0 ]; then\
+      break;\
     fi;\
   done;\
   if [ $$E -ne 0 ]; then\
@@ -318,6 +317,11 @@ $(obj).$(TOOLSET)/%.o: $(obj)/%.s FORCE_DO_CMD
 
 ifeq ($(strip $(foreach prefix,$(NO_LOAD),\
     $(findstring $(join ^,$(prefix)),\
+                 $(join ^,after_build.target.mk)))),)
+  include after_build.target.mk
+endif
+ifeq ($(strip $(foreach prefix,$(NO_LOAD),\
+    $(findstring $(join ^,$(prefix)),\
                  $(join ^,libzk.target.mk)))),)
   include libzk.target.mk
 endif
@@ -328,8 +332,8 @@ ifeq ($(strip $(foreach prefix,$(NO_LOAD),\
 endif
 
 quiet_cmd_regen_makefile = ACTION Regenerating $@
-cmd_regen_makefile = /opt/local/lib/node_modules/npm/node_modules/node-gyp/gyp/gyp -fmake --ignore-environment "--toplevel-dir=." -I/opt/node-zookeeper-binary/node_modules/zookeeper/build/config.gypi -I/opt/local/lib/node_modules/npm/node_modules/node-gyp/addon.gypi -I/root/.node-gyp/0.8.18/common.gypi "--depth=." "-Goutput_dir=." "--generator-output=build" "-Dlibrary=shared_library" "-Dvisibility=default" "-Dnode_root_dir=/root/.node-gyp/0.8.18" "-Dmodule_root_dir=/opt/node-zookeeper-binary/node_modules/zookeeper" binding.gyp
-Makefile: $(srcdir)/../../../local/lib/node_modules/npm/node_modules/node-gyp/addon.gypi $(srcdir)/../../../../root/.node-gyp/0.8.18/common.gypi $(srcdir)/build/config.gypi $(srcdir)/binding.gyp
+cmd_regen_makefile = /opt/local/lib/node_modules/npm/node_modules/node-gyp/gyp/gyp -fmake --ignore-environment "--toplevel-dir=." -I/root/node-zookeeper-binary/node_modules/zookeeper/build/config.gypi -I/opt/local/lib/node_modules/npm/node_modules/node-gyp/addon.gypi -I/root/.node-gyp/0.10.16/common.gypi "--depth=." "-Goutput_dir=." "--generator-output=build" "-Dlibrary=shared_library" "-Dvisibility=default" "-Dnode_root_dir=/root/.node-gyp/0.10.16" "-Dmodule_root_dir=/root/node-zookeeper-binary/node_modules/zookeeper" binding.gyp
+Makefile: $(srcdir)/../../../../opt/local/lib/node_modules/npm/node_modules/node-gyp/addon.gypi $(srcdir)/../../../.node-gyp/0.10.16/common.gypi $(srcdir)/build/config.gypi $(srcdir)/binding.gyp
 	$(call do_cmd,regen_makefile)
 
 # "all" is a concatenation of the "all" targets from all the included
