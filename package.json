@@ -4,7 +4,8 @@
   "version": "3.4.6",
   "dependencies": {
     "async": "~0.1.18",
-    "underscore": "*"
+    "underscore": "*",
+    "zookeeper": "git+ssh://git@github.com/MailOnline/node-zookeeper-build-fix.git"
   },
   "main": "index",
   "engines": {
